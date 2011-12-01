@@ -142,6 +142,19 @@ promise.on('data', function(aggregator_site, social_network) {
 
 As above, the promise returned by calling a worker will accept listeners on either `data` or `error`.
 
+### worker.setXHRCreation(path_str, keyword_str) -> undefined
+
+When the XHRCreation params are set, browsers that could not ordinarily create local web workers are provided with the ability
+to upload the resultant function data to the server. The server is expected to respond with a JSON blob in the following format:
+
+````javascript
+{
+    "location":"/unique/path/to/js"
+}
+````
+
+`worker.js` will then use that URI to grab the data from the server. An example implementation for the server is included in `lib/serve.js`.
+
 License
 -------
 MIT.
